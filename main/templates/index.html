@@ -13,9 +13,10 @@
 	<div>
 		<form method="POST" action="#" enctype="multipart/formdata">
 			<div id="uploadArea" class="drag-area">
-				<input name="fileupload" type="file" value="upload">
+				<input name="fileupload" type="file" value="upload" onchange="OnFileSelect( this );" multiple />
 			</div>
 		</form>
 	</div>
+	<ul id="ID001"></ul>
 </body>
 </html>

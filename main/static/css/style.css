@@ -1,0 +1,21 @@
+.drag-area {
+  padding: 180px 0;
+  width: 100%;
+  margin: 0 auto 20px;
+  background: #f6f6f6;
+  text-align: center;
+}
+
+.drag-area.drag {
+  background: #f0f0f0;
+  border: solid 3px lightblue;
+}
+
+.drag-area.drop {
+  background: red;
+ 
+}
+
+.drag-area input {
+  margin: 0 auto;
+}
