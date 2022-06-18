@@ -43,14 +43,8 @@ function OnFileSelect( inputElement ) {
   let fileList = inputElement.files;
   console.dir(fileList);
 
-  //ファイルの数を取得
-  let fileCount = fileList.length;
-
-  let loadCompleteCount = 0;
-  let imageList = "";
-
   //選択されたファイルの数だけ処理する。
-  for ( let i = 0; i < fileCount; i++ ) {
+  for ( let i=0; i<fileList.length; i++ ) {
 	//FileReaderクラスのインスタンス生成
 	const fileReader = new FileReader();
 
@@ -67,7 +61,10 @@ function OnFileSelect( inputElement ) {
 		newDiv.setAttribute('class', 'img_style');
 		let newImg = document.createElement('img');
 		newImg.setAttribute('src', fileReader.result);
+		newDiv.appendChild(document.createElement('div').appendChild(document.createTextNode(file.name)));
+		console.log(file.name);
 		newDiv.appendChild(newImg);
+		//thumbnails.insertBefore(newDiv,thumbnails.firstChild);
 		thumbnails.appendChild(newDiv);
 	});
 	
