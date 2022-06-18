@@ -13,3 +13,24 @@
 .drag-area input {
 	margin: 0 auto;
 }
+
+.contents {
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.img_style {
+	width: 150px;
+	height: 150px;
+	border: solid black 1px;
+
+}
+
+.img_style img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	text-align: center;
+}
