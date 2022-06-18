@@ -50,6 +50,8 @@ function onFileSelect( inputElement ) {
 
 	//ファイルを取得
 	const file = fileList[i];
+	console.log("順番");
+	console.log(file);
 
 	//サムネを全て削除
 	document.getElementById('thumbnails').innerHTML = "";
@@ -70,16 +72,19 @@ function onFileSelect( inputElement ) {
 	
 
 	//ファイルの読み込み(Data URI Schemeの取得)
-	const fileReader = await new FileReaderEx().readAsDataURL( file );
-		let thumbnails = document.getElementById('thumbnails');
-		let newDiv = document.createElement('div');
-		newDiv.setAttribute('class', 'img_style');
-		let newImg = document.createElement('img');
-		newImg.setAttribute('src', fileReader.result);
+	let fileReader;
+	let thumbnails = document.getElementById('thumbnails');
+	let newDiv = document.createElement('div');
+	newDiv.setAttribute('class', 'img_style');
+	let newImg = document.createElement('img');
+	(async() => {
+	fileReader = await new FileReaderEx().readAsDataURL( file );
+		newImg.setAttribute('src', fileReader);
 		newDiv.appendChild(document.createElement('div').appendChild(document.createTextNode(file.name)));
 		console.log(file.name);
 		newDiv.appendChild(newImg);
 		//thumbnails.insertBefore(newDiv,thumbnails.firstChild);
 		thumbnails.appendChild(newDiv);
+	})();
 	}
 }
