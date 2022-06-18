@@ -57,20 +57,17 @@ function OnFileSelect( inputElement ) {
 	//ファイルを取得
 	const file = fileList[i];
 
-	//サムネを全て削除
-	document.getElementById('thumbnails').innerHTML = "";
-
 	//読み込み完了時の処理を追加
-	fileReader.addEventListener("load", (event) => {
-		let thumbnails = document.getElementById('thumbnails');
-		let newDiv = document.createElement('div');
-		newDiv.setAttribute('class', 'img_style');
-		let newImg = document.createElement('img');
-		newImg.setAttribute('src', fileReader.result);
-		newDiv.appendChild(newImg);
-		thumbnails.appendChild(newDiv);
-	});
-	
+	fileReader.onload = function() {
+	  //<li>,<img>タグの生成
+	  imageList += "<li><p>" + file.name + "</p></li>\r\n";
+	  imageList += "<li><img src=\"" + this.result + "\" /></li>\r\n";
+	  //選択されたファイル全ての処理が完了したら,<ul>タグに流し込む
+	  if ( ++loadCompleteCount == fileCount ) {
+		//<ul>タグに<li>,<img>を流し込む
+		document.getElementById( "ID001" ).innerHTML = imageList;
+	  }
+	};
 
 	//ファイルの読み込み(Data URI Schemeの取得)
 	fileReader.readAsDataURL( file );
