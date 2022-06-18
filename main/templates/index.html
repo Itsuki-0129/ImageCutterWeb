@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="../static/css/style.css">
 	<script src="../static/js/common.js"></script>
+	<script src="../static/js/FileReaderEx.js"></script>
 </head>
 
 <body>
@@ -13,7 +14,7 @@
 	<div>
 		<form method="POST" action="#" enctype="multipart/formdata">
 			<div id="uploadArea" class="drag-area">
-				<input name="fileupload" type="file" value="upload" onchange="OnFileSelect( this );" multiple />
+				<input name="fileupload" type="file" value="upload" onchange="onFileSelect( this );" multiple />
 			</div>
 		</form>
 	</div>

@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded',() => {
 		var input = document.querySelectorAll('input[name="fileupload"]');
 		//取得したinput[type=file]にDropしたファイルを格納する。
 		input[0].files = event.dataTransfer.files;
-		OnFileSelect(input[0]);
+		onFileSelect(input[0]);
 	});
 });
 
-function OnFileSelect( inputElement ) {
+function onFileSelect( inputElement ) {
   console.log("OnFileSelect()を開始します");
   //ファイルリストを取得
   let fileList = inputElement.files;
@@ -46,7 +46,7 @@ function OnFileSelect( inputElement ) {
   //選択されたファイルの数だけ処理する。
   for ( let i=0; i<fileList.length; i++ ) {
 	//FileReaderクラスのインスタンス生成
-	const fileReader = new FileReader();
+	//const fileReader = await new FileReaderEx();
 
 	//ファイルを取得
 	const file = fileList[i];
@@ -55,7 +55,7 @@ function OnFileSelect( inputElement ) {
 	document.getElementById('thumbnails').innerHTML = "";
 
 	//読み込み完了時の処理を追加
-	fileReader.addEventListener("load", (event) => {
+	/*fileReader.addEventListener("load", (event) => {
 		let thumbnails = document.getElementById('thumbnails');
 		let newDiv = document.createElement('div');
 		newDiv.setAttribute('class', 'img_style');
@@ -66,10 +66,20 @@ function OnFileSelect( inputElement ) {
 		newDiv.appendChild(newImg);
 		//thumbnails.insertBefore(newDiv,thumbnails.firstChild);
 		thumbnails.appendChild(newDiv);
-	});
+	});*/
 	
 
 	//ファイルの読み込み(Data URI Schemeの取得)
-	fileReader.readAsDataURL( file );
-  }
+	const fileReader = await new FileReaderEx().readAsDataURL( file );
+		let thumbnails = document.getElementById('thumbnails');
+		let newDiv = document.createElement('div');
+		newDiv.setAttribute('class', 'img_style');
+		let newImg = document.createElement('img');
+		newImg.setAttribute('src', fileReader.result);
+		newDiv.appendChild(document.createElement('div').appendChild(document.createTextNode(file.name)));
+		console.log(file.name);
+		newDiv.appendChild(newImg);
+		//thumbnails.insertBefore(newDiv,thumbnails.firstChild);
+		thumbnails.appendChild(newDiv);
+	}
 }
